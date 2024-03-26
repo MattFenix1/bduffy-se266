@@ -6,5 +6,4 @@ function verification($data){
     else {
         echo 'You may not enter.';
     };
-
     }
