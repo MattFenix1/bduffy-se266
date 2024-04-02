@@ -7,3 +7,9 @@ function verification($data){
         echo 'You may not enter.';
     };
     }
+
+function calcResults(){
+    var_dump($_POST);
+    $fname = filter_input(INPUT_POST, 'fname');
+    $lname = filter_input(INPUT_POST, 'lname');
+}
