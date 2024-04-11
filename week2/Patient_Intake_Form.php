@@ -15,6 +15,7 @@
         $heightinch = '';
         $weight = '';
 
+        require '../External Files/Functions.php';
         if (isset($_POST['submit'])){ //Variables after submit button is pressed
             $fname = filter_input(INPUT_POST, 'fname');
             $lname = filter_input(INPUT_POST, 'lname');
@@ -23,6 +24,8 @@
             $heightft = filter_input(INPUT_POST, 'heightft', FILTER_VALIDATE_FLOAT);
             $heightinch = filter_input(INPUT_POST, 'heightinch', FILTER_VALIDATE_FLOAT);
             $weight = filter_input(INPUT_POST, 'weight', FILTER_VALIDATE_FLOAT);
+            $age = age($birthdate);
+            $bmi = bmi($heightft, $heightinch, $weight);
         }
     ?>
     <form method="POST"> <!--Beginning of form-->
@@ -32,13 +35,13 @@
         <label for="lname">Last Name:</label><br> <!--Last Name for form-->
         <input type="text" id="lname" name="lname" value="<?= $_POST['lname'] ?>" required>
         
-        <p>Are you married?</p> <!--Choosing whether or not they are married-->
+        <p>Are you married?</p> <!--Choosing whether or not they are married, would not show up in results-->
         <input type="radio" id="yes" name="married" <?php if (isset($married) && $married == "yes") echo "checked"; ?> value="yes">
         <label for="yes">Yes</label>
         <input type="radio" id="no" name="married" <?php if (isset($married) && $married == "no") echo "checked"; ?> value="no">
         <label for="no">No</label><br>
 
-        <label for="birthdate">Birth Date:</label> <!--Entering their birthdate-->
+        <label for="birthdate">Birth Date:</label> <!--Entering their birthdate, would not show up in results-->
         <input type="date" id="birthdate" name="birthdate" max="2024-04-02" value="<?= $_POST['birthdate'] ?>" required><br>
 
         <label for="height">Height:</label><br> <!--Entering their height in feet then inches-->
@@ -61,6 +64,9 @@
         <p><span>Birthdate:</span> <?= $birthdate; ?></p>
         <p><span>Height:</span> <?= $heightft; ?> Feet <?= $heightinch; ?> Inches</p>
         <p><span>Weight:</span> <?= $weight; ?></p>
+        <p><span>Age:</span> <?= age($birthdate)?></p> <!--Could not get to show-->
+        <p><span>BMI:</span> <?= $bmi?></p> <!--Could not get to show-->
+        <p><span>BMI Classification:</span> <?= bmiDescription($bmi)?></p>
     <?php endif; ?>
 </body>
 </html>
