@@ -1,6 +1,7 @@
 <?php
     include __DIR__ . '/model/model_patients.php';
-    include __DIR__ . '/External Files/Functions.php';
+    include '../External Files/Functions.php';
+        $error = '';
         $fname = '';
         $lname = '';
         $married = '';
@@ -10,6 +11,9 @@
             $lname = filter_input(INPUT_POST, 'lname');
             $married = filter_input(INPUT_POST, 'married', FILTER_VALIDATE_FLOAT);
             $birthdate = filter_input(INPUT_POST, 'birthdate', FILTER_VALIDATE_FLOAT);
+        }
+        if(isset($_POST['submit']) && $error == ""){
+            addPatient ($fname, $lname, $married, $birthdate);
         }
 ?>
 
@@ -21,6 +25,17 @@
     <title>Document</title>
 </head>
 <body>
+<?php if (isset($_POST['submit']) && $error == ""): ?>
+    <h2>Team was added</h2>
+        
+    <ul>
+        <li><?= "First Name: $fname"; ?></li>
+        <li><?= "Last Name: $lname"; ?></li>
+        <li><?= "Married: $married" ?></li>
+        <li><?= "BirthDate: $birthdate" ?></li>
+    </ul>
+    <a href="patients_view.php">View All Patients</a>
+<?php endif; ?>
     <form method="POST"> <!--Beginning of form-->
         <label for="fname">First Name:</label><br> <!--First Name for form-->
         <input type="text" id="fname" name="fname" value="<?= $fname ?>" required><br>
