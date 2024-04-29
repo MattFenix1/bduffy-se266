@@ -25,10 +25,10 @@
             <li><a href="../bduffy-se266/week2/Patient_Intake_Form.php">Patient Intake Form</li>
         </ul>
         <ul>Week 3:
-            <li><a href="">Week 3 Assignment</li>
+            <li><a href="../bduffy-se266/week3/atm.php">Week 3 Assignment</li>
         </ul>
         <ul>Week 4:
-            <li><a href="">Week 4 Assignment</li>
+            <li><a href="../bduffy-se266/week4/patients_view.php">Week 4 Assignment</li>
         </ul>
         <ul>Week 5:
             <li><a href="">Week 5 Assignment</li>
