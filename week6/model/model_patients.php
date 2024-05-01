@@ -32,29 +32,20 @@ function addPatient($fn, $ln, $m, $bd){
     return($results);
 }
 
-function updatePatient($fn, $ln, $m, $bd, $pid){
+function updatePatient($fn, $ln, $m, $bd){
     global $db;
     $results = "";
-    $sql = "UPDATE patients SET patientFirstName = :firstName, patientLastName = :lastName, patientMarried = :married, patientBirthDate = :birthDate WHERE id = $pid";
+    $sql = "UPDATE patients SET patientFirstName = :firstName, patientLastName = :lastName, patientMarried = :married, patientBirthDate = :birthDate";
     $stmt = $db->prepare($sql);
     $binds = array(
         ":firstName" => $fn,
         ":lastName" => $ln,
         ":married" => $m,
-        ":birthDate" => $bd,
-        ":id" => $pid
+        ":birthDate" => $bd
     );
     if ($stmt->execute($binds) && $stmt->rowCount() > 0){
         $results = 'Data Updated';
     }
     return($results);
-}
-function deletePatient($id){
-    $deleteSuccess = false;
-    $teamTable = $this->teamData;
-    $stmt = $teamTable->prepare("DELETE FROM patients WHERE id=:idParam");
-    $stmt->bindValue(':idParam', $id);
-    $deleteSuccess = ($stmt->execute() && $stmt->rowCount > 0);
-    return $deleteSuccess;
 }
 $patients = getPatients();

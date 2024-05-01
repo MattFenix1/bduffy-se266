@@ -13,29 +13,18 @@
             $birthdate = filter_input(INPUT_POST, 'birthdate');
         }
         if(isset($_POST['submit']) && $error == ""){
-            addPatient ($fname, $lname, $married, $birthdate);
+            updatePatient ($fname, $lname, $married, $birthdate);
         }
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <title><?= $action ?> Patients</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
 <body>
-<?php if (isset($_POST['submit']) && $error == ""): ?>
-    <h2>Patient was added</h2>
-        
-    <ul>
-        <li><?= "First Name: $fname"; ?></li>
-        <li><?= "Last Name: $lname"; ?></li>
-        <li><?= "Married: $married" ?></li>
-        <li><?= "BirthDate: $birthdate" ?></li>
-    </ul>
-    <a href="patients_view.php">View All Patients</a>
-<?php endif; ?>
     <form method="POST"> <!--Beginning of form-->
         <label for="fname">First Name:</label><br> <!--First Name for form-->
         <input type="text" id="fname" name="fname" value="<?= $fname ?>" required><br>
@@ -52,7 +41,7 @@
         <label for="birthdate">Birth Date:</label> <!--Entering their birthdate-->
         <input type="date" id="birthdate" name="birthdate" max="2024-04-02" value="<?= $birthdate ?>" required><br>
 
-        <input type="submit" name="submit" value="Submit"> <!--Submit button-->
+        <input type="submit" name="submit" value="Update"> <!--Submit button-->
     </form>
     <a href="patients_view.php">View All Patients</a>
 </body>
