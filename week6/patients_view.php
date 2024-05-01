@@ -12,8 +12,20 @@
         <?php
             include __DIR__ . '/model/model_patients.php';
             $patients = getPatients();
+            $patients = searchPatients($fn, $ln, $m, $bd);
         ?>
-
+        <h2>Search for Patient</h2>
+        <form action="#" method="post">
+            <input type="hidden" name="action" value="search">
+            <label>First Name:</label>
+            <input type="text" name="firstName" value="">
+            <label>Last Name:</label>
+            <input type="text" name="lastName" value="">
+            <label>Married:</label>
+            <input type="text" name="married" value="">
+            <label>BirthDate:</label>
+            <input type="DateTime" name="birthDate" value="">
+        </form>
         <table>
             <thead>
                 <tr>
