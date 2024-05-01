@@ -17,7 +17,9 @@ function getPatients(){
 
 function addPatient($fn, $ln, $m, $bd){
     global $db;
-    $stmt = $db->prepare("INSERT INTO patients SET patientFirstName = :firstName, patientLastName = :lastName, patientMarried = :married, patientBirthDate = :birthDate");
+    $results = "";
+    $sql = "INSERT INTO patients SET patientFirstName = :firstName, patientLastName = :lastName, patientMarried = :married, patientBirthDate = :birthDate";
+    $stmt = $db->prepare($sql);
     $binds = array(
         ":firstName" => $fn,
         ":lastName" => $ln,

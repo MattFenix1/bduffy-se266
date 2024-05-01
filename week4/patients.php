@@ -10,7 +10,7 @@
             $fname = filter_input(INPUT_POST, 'fname');
             $lname = filter_input(INPUT_POST, 'lname');
             $married = filter_input(INPUT_POST, 'married', FILTER_VALIDATE_FLOAT);
-            $birthdate = filter_input(INPUT_POST, 'birthdate', FILTER_VALIDATE_FLOAT);
+            $birthdate = filter_input(INPUT_POST, 'birthdate');
         }
         if(isset($_POST['submit']) && $error == ""){
             addPatient ($fname, $lname, $married, $birthdate);
@@ -44,9 +44,9 @@
         <input type="text" id="lname" name="lname" value="<?= $lname ?>" required>
         
         <p>Are you married?</p> <!--Choosing whether or not they are married-->
-        <input type="radio" id="yes" name="married" value="yes">
+        <input type="radio" id="yes" name="married" value= 1>
         <label for="yes">Yes</label>
-        <input type="radio" id="no" name="married" value="no">
+        <input type="radio" id="no" name="married" value= 0>
         <label for="no">No</label><br>
 
         <label for="birthdate">Birth Date:</label> <!--Entering their birthdate-->
@@ -54,5 +54,6 @@
 
         <input type="submit" name="submit" value="Submit"> <!--Submit button-->
     </form>
+    <a href="patients_view.php">View All Patients</a>
 </body>
 </html>
