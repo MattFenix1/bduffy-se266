@@ -26,7 +26,7 @@
 </head>
 <body>
 <?php if (isset($_POST['submit']) && $error == ""): ?>
-    <h2>Patient was added</h2>
+    <h2>Team was added</h2>
         
     <ul>
         <li><?= "First Name: $fname"; ?></li>
