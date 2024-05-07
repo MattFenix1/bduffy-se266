@@ -48,7 +48,7 @@ function updatePatient($fn, $ln, $m, $bd){
     }
     return($results);
 }
-function searchPatients($first, $last, $married, $birth){
+function searchPatients($first, $last, $married){
     global $db;
     $binds = array();
 
@@ -64,10 +64,6 @@ function searchPatients($first, $last, $married, $birth){
     if ($married != ""){
         $sql .= "AND patientMarried LIKE :married";
         $binds['married'] = '%'.married.'%';
-    }
-    if ($birth != ""){
-        $sql .= "AND patientBirthDate LIKE :birth";
-        $binds['birth'] = '%'.birth.'%';
     }
     $results = array();
     $stmt = $db->prepare($sql);

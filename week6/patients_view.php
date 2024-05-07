@@ -12,7 +12,7 @@
         <?php
             include __DIR__ . '/model/model_patients.php';
             $patients = getPatients();
-            $patients = searchPatients($fn, $ln, $m, $bd);
+            $patients = searchPatients($fn, $ln, $m);
         ?>
         <h2>Search for Patient</h2>
         <form action="#" method="post">
@@ -23,8 +23,7 @@
             <input type="text" name="lastName" value="">
             <label>Married:</label>
             <input type="text" name="married" value="">
-            <label>BirthDate:</label>
-            <input type="DateTime" name="birthDate" value="">
+            <input type="submit" name="search" value = "Search">
         </form>
         <table>
             <thead>
@@ -51,6 +50,7 @@
         </table>
         <br />
         <a href="patients.php">Add Patient</a>
+        <a href="logoff.php">Log-Off</a>
         </div>
     </div>
 </body>
