@@ -32,7 +32,7 @@
                         <td> <?= $row['patientLastName'];?></td>
                         <td><?= $row['patientMarried'];?></td>
                         <td><?= $row['patientBirthDate'];?></td>
-                        <td><a href="patients_update.php">Update Patient</a></td>
+                        <td><a href="patients_update.php?id=<?= $row['id']; ?>">Update Patient</a></td>
                     </tr>
                 <?php endforeach; ?>
             </tbody>

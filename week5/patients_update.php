@@ -6,29 +6,46 @@
         $lname = '';
         $married = '';
         $birthdate = '';
-        if (isset($_POST['submit'])){ //Variables after submit button is pressed
+        if (isset($_POST['fname'])){ //Variables after submit button is pressed
             $fname = filter_input(INPUT_POST, 'fname');
             $lname = filter_input(INPUT_POST, 'lname');
             $married = filter_input(INPUT_POST, 'married', FILTER_VALIDATE_FLOAT);
             $birthdate = filter_input(INPUT_POST, 'birthdate');
+            $id = filter_input(INPUT_POST, 'id', FILTER_VALIDATE_FLOAT);
         }
         if(isset($_POST['submit']) && $error == ""){
-            updatePatient ($fname, $lname, $married, $birthdate);
+            updatePatient ($fname, $lname, $married, $birthdate, $id);
+            header('Location: patients_view.php');
         }
-        if(isset($_POST['delete']) && $error == ""){
+        if(isset($_POST['delete'])){
             deletePatient($id);
+            header('Location: patients_view.php');
+        }
+
+        if (isset($_GET['id'])){
+            $id = filter_input(INPUT_GET, 'id', FILTER_VALIDATE_FLOAT);
+
+            $patient = getPatient($id);
+
+            $fname = $patient['patientFirstName'];
+            $lname = $patient['patientLastName'];
+            $married = $patient['patientMarried'];
+            $birthdate = $patient['patientBirthDate'];
         }
 ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title><?= $action ?> Patients</title>
+    <title>Patients</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
 <body>
     <form method="POST"> <!--Beginning of form-->
+
+        <input type="hidden" name="id" value="<?= $id; ?>">
+
         <label for="fname">First Name:</label><br> <!--First Name for form-->
         <input type="text" id="fname" name="fname" value="<?= $fname ?>" required><br>
         
@@ -45,7 +62,7 @@
         <input type="date" id="birthdate" name="birthdate" max="2024-04-02" value="<?= $birthdate ?>" required><br>
 
         <input type="submit" name="submit" value="Update"> <!--Submit button-->
-        <input type="button" name="delete" value="Delete">
+        <input type="submit" name="delete" value="Delete">
     </form>
     
     <a href="patients_view.php">View All Patients</a>
