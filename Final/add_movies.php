@@ -13,22 +13,8 @@
             $id = filter_input(INPUT_POST, 'id', FILTER_VALIDATE_FLOAT);
         }
         if(isset($_POST['submit']) && $error == ""){
-            updateMovie ($moviename, $wheretofind, $addpeople, $watched, $id);
+            addMovie ($moviename, $wheretofind, $addpeople, $watched);
             header('Location: movies_view.php');
-        }
-        if(isset($_POST['delete'])){
-            deleteMovie($id);
-            header('Location: movies_view.php');
-        }
-        if (isset($_GET['id'])){
-            $id = filter_input(INPUT_GET, 'id', FILTER_VALIDATE_FLOAT);
-
-            $movies = getMovie($id);
-
-            $moviename = $movies['moviename'];
-            $wheretofind = $movies['wheretofind'];
-            $addpeople = $movies['addpeople'];
-            $watched = $movies['watched'];
         }
 ?>
 <!DOCTYPE html>
@@ -48,8 +34,6 @@
     <a href="users_view.php">Logoff</a>
 </nav>
     <form method="POST">
-        <input type="hidden" name="id" value="<?= $id; ?>">
-
         <label for="moviename">Movie Title:</label><br>
         <input type="text" id="moviename" name="moviename" value="<?= $moviename ?>" required><br>
         
@@ -68,8 +52,7 @@
         <input type="radio" id="no" name="watched" value= 0>
         <label for="no">No</label><br>
 
-        <input type="submit" name="submit" value="Update">
-        <input type="submit" name="delete" value="Delete">
+        <input type="submit" name="submit" value="Add">
     </form>
     <a href="movies_view.php">View All Movies</a>
 <footer>

@@ -1,0 +1,28 @@
+@charset "UTF-8";
+header{
+    position:static;
+    width:100%;
+    background-color: #424242;
+    display:flex;
+    justify-content: left;
+    text-align: center;
+    color: #FFFFFF;
+}
+h1{
+    font-size: 48px;
+}
+h2{
+    font-size: 36px;
+}
+.image{
+    height: 100px;
+    width: 100px;
+}
+td{
+    text-align: center;
+}
+footer{
+    width: 100%;
+    text-align: center;
+    background-color: #d9d9d9;
+}
