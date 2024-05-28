@@ -1,22 +1,31 @@
 <?php
 include __DIR__ . '/model/model_users.php';
 session_start();
-if (isset($_REQUEST['login'])){
-    $un = $_REQUEST['username'];
-    $pw = $_REQUEST['password'];
-}
-if (isset($REQUEST['login'])){
+
+if (isset($_POST['login'])){
+    $un = filter_input(INPUT_POST, 'username');
+    $pw = filter_input(INPUT_POST, 'password');
+
     $results = login($un, $pw);
-
-    foreach($results as $r){
-        $verify = password_verify($password, $r['password']);
-
-        if($verify){
-            $_SESSION['username'] = $r['username'];
-        }
+    
+    if($results){
+        $_SESSION['username'] = $un;
+        header("Location: movies_view.php");
     }
-    header("Location: movies_view.php");
 }
+
+// if (isset($REQUEST['login'])){
+//     $results = login($un, $pw);
+
+//     foreach($results as $r){
+//         $verify = password_verify($password, $r['password']);
+
+//         if($verify){
+//             $_SESSION['username'] = $r['username'];
+//         }
+//     }
+//     header("Location: movies_view.php");
+// }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -39,7 +48,7 @@ if (isset($REQUEST['login'])){
         <br>
         <br>
         <label>Password:</label>
-        <input type="text" name="password" value="">
+        <input type="password" name="password" value="">
         <br>
         <br>
         <input type="submit" name="login" value="Login">
